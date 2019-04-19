@@ -1,0 +1,23 @@
+{
+  "buffalo": [
+    "herbivore",
+    "shaggy",
+    "brown",
+    "strong",
+    "animal"
+  ],
+  "dog": [
+    "cute",
+    "carnivore",
+    "bite",
+    "loyal",
+    "animal"
+  ],
+  "zebra": [
+    "herbivore",
+    "africa",
+    "stripes",
+    "grass",
+    "animal"
+  ]
+}
