@@ -6,7 +6,7 @@ class Model:
     def __init__(self, model, questions):
         self.raw_model = json.loads(open(model, 'r').read())
         self.questions = json.loads(open(questions, 'r').read())
-        self.objects_prob = {x: 0 for x in self.raw_model}
+        self.objects_prob = dict.fromkeys(self.raw_model, 0)
         self.words_value, self.words_prob, self.negate_words_value = self.__calculate_word_weight()
         self.objects_dict = self.__set_2d_object_dict()
         self.highest_word_value = self.get_the_highest_word_value()
