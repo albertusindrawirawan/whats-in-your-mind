@@ -2,35 +2,37 @@ import json
 
 
 class Model:
-    def __init__(self, model):
+    def __init__(self, model, questions):
         self.raw_model = json.loads(open(model, 'r').read())
+        self.questions = json.loads(open(questions, 'r').read())
         self.objects_prob = {x: 0 for x in self.raw_model}
         self.words_value, self.words_prob, self.negate_words_value = self.__calculate_word_weight()
         self.objects_dict = self.__set_2d_object_dict()
         self.highest_word_value = self.get_the_highest_word_value()
         self.iteration = 0
-        self.suggested_word = {}
+        self.suggested_question = {}
+        self.minimum_threshold = 0.9
 
     def __calculate_word_weight(self):
         total_words = 0
-        words_dict = {}
+        words_value = {}
         words_prob = {}
         n_words_value = {}
 
         for data in self.raw_model.values():
             for i in data:
                 total_words += 1
-                if i in words_dict:
-                    words_dict[i] += 1
+                if i in words_value:
+                    words_value[i] += 1
                 else:
-                    words_dict[i] = 1
+                    words_value[i] = 1
 
-        for i, value in words_dict.items():
-            words_dict[i] = 1 / value
+        for i, value in words_value.items():
+            words_value[i] = 1 / value
             words_prob[i] = value / total_words
             n_words_value[i] = 1 / (total_words - value)
 
-        return words_dict, words_prob, n_words_value
+        return words_value, words_prob, n_words_value
 
     def __set_2d_object_dict(self):
         object_dict = {}
@@ -47,15 +49,14 @@ class Model:
 
     def reset_dynamic_calculation(self):
         self.objects_prob = {x: 0 for x in self.raw_model}
+        self.suggested_question = {}
+        self.iteration = 0
 
     def calculate_probability(self, word, correct):
         self.iteration += 1
-        self.suggested_word[word] = True
+        self.suggested_question[word] = True
 
-        if correct:
-            prob = self.words_value[word]
-        else:
-            prob = self.negate_words_value[word]
+        prob = self.words_value[word] if correct else self.negate_words_value[word]
 
         for key, val in self.objects_dict.items():
             temp = self.objects_prob[key] * (self.iteration - 1)
@@ -66,7 +67,10 @@ class Model:
 
         max_o = max(self.objects_prob, key=self.objects_prob.get)
         for i in self.raw_model[max_o]:
-            if i not in self.suggested_word:
-                return i, ""
+            if i not in self.suggested_question:
+                return i, None
 
-        return "", max_o
+        if self.objects_prob[max_o] < self.minimum_threshold:
+            return None, None
+
+        return None, max_o

@@ -2,7 +2,7 @@ import model
 
 print("doing something with the model, plz wait. . .\n\n\n")
 
-model = model.Model("sample_model.txt")
+model = model.Model("sample_model.txt", "questions.txt")
 
 print("Welcome to Akinator-like\nType Y for Yes and N for No \n\n")
 
@@ -12,15 +12,18 @@ while is_playing:
     word = model.highest_word_value
 
     while True:
-        val = input("is it " + word + "?\n").lower()
+        val = input(model.questions[word] + "\n").lower()
 
         if val == "n" or val == "y":
             suggested, max_object = model.calculate_probability(word, True if val == "y" else False)
 
-            if suggested is not "":
+            if suggested is not None:
                 word = suggested
+            elif suggested is None and max_object is None:
+                print("=====\nsorry, cannot find the right answer\n")
+                break
             else:
-                print(max_object)
+                print("=====\nthe answer is " + max_object + "\n")
                 break
         else:
             print("Wrong input man\n\n")

@@ -1,0 +1,16 @@
+{
+  "1": "is it an animal?",
+  "2": "is it a herbivore?",
+  "3": "is it a carnivore?",
+  "4": "is it has a brown color?",
+  "5": "is it shaggy?",
+  "6": "is it a strong animal?",
+  "7": "is it a cute animal?",
+  "8": "is it can bite you?",
+  "9": "is it from africa?",
+  "10": "is it has stripes pattern?",
+  "11": "is he/she a singer?",
+  "12": "is he/she canadian?",
+  "13": "is he/she has tattoo?",
+  "14": "is he/she already married?"
+}

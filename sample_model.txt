@@ -1,23 +1,27 @@
 {
   "buffalo": [
-    "herbivore",
-    "shaggy",
-    "brown",
-    "strong",
-    "animal"
+    "2",
+    "5",
+    "4",
+    "6",
+    "1"
   ],
   "dog": [
-    "cute",
-    "carnivore",
-    "bite",
-    "loyal",
-    "animal"
+    "7",
+    "3",
+    "8",
+    "1"
   ],
   "zebra": [
-    "herbivore",
-    "africa",
-    "stripes",
-    "grass",
-    "animal"
+    "2",
+    "9",
+    "10",
+    "1"
+  ],
+  "justin bieber": [
+    "11",
+    "12",
+    "13",
+    "14"
   ]
 }
