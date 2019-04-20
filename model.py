@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 
 
 class Model:
@@ -11,21 +12,18 @@ class Model:
         self.highest_word_value = self.get_the_highest_word_value()
         self.iteration = 0
         self.suggested_question = {}
-        self.minimum_threshold = 0.9
+        self.minimum_threshold = 0.7
 
     def __calculate_word_weight(self):
         total_words = 0
-        words_value = {}
+        words_value = defaultdict(float)
         words_prob = {}
         n_words_value = {}
 
         for data in self.raw_model.values():
             for i in data:
                 total_words += 1
-                if i in words_value:
-                    words_value[i] += 1
-                else:
-                    words_value[i] = 1
+                words_value[i] += 1
 
         for i, value in words_value.items():
             words_value[i] = 1 / value
