@@ -46,7 +46,7 @@ class Model:
         return max(self.words_prob, key=self.words_prob.get)
 
     def reset_dynamic_calculation(self):
-        self.objects_prob = {x: 0 for x in self.raw_model}
+        self.objects_prob = dict.fromkeys(self.raw_model, 0)
         self.suggested_question = {}
         self.iteration = 0
 
@@ -63,6 +63,7 @@ class Model:
             else:
                 self.objects_prob[key] = temp / self.iteration
 
+        # TODO rework the next question algorithm
         max_o = max(self.objects_prob, key=self.objects_prob.get)
         for i in self.raw_model[max_o]:
             if i not in self.suggested_question:

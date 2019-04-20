@@ -26,7 +26,7 @@ while is_playing:
                 print("=====\nthe answer is " + max_object + "\n")
                 break
         else:
-            print("=====\nWrong input man, let me ask you once more time\n====\n")
+            print("=====\nWrong input man, let me ask you one more time\n====\n")
 
     while True:
         val = input("Hey, wanna play again?\n").lower()
@@ -37,4 +37,4 @@ while is_playing:
             is_playing = False
             break
         else:
-            print("=====\ntWrong input man, let me ask you once more time\n====\n")
+            print("=====\ntWrong input man, let me ask you one more time\n====\n")
