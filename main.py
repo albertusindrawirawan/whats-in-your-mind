@@ -4,7 +4,7 @@ print("doing something with the model, plz wait. . .\n\n\n")
 
 model = model.Model("sample_model.txt", "questions.txt")
 
-print("Welcome to Akinator-like\nType Y for Yes and N for No \n\n")
+print("=====\nWelcome to Akinator-like\nType Y for Yes and N for No \n=====\n\n")
 
 is_playing = True
 
@@ -20,10 +20,10 @@ while is_playing:
             if suggested is not None:
                 word = suggested
             elif suggested is None and max_object is None:
-                print("=====\nsorry, cannot find the right answer\n")
+                print("=====\nsorry, cannot find the right answer\n=====\n")
                 break
             else:
-                print("=====\nthe answer is " + max_object + "\n")
+                print("=====\nthe answer is " + max_object + "\n=====\n")
                 break
         else:
             print("=====\nWrong input man, let me ask you one more time\n====\n")
@@ -37,4 +37,4 @@ while is_playing:
             is_playing = False
             break
         else:
-            print("=====\ntWrong input man, let me ask you one more time\n====\n")
+            print("=====\nWrong input man, let me ask you one more time\n====\n")

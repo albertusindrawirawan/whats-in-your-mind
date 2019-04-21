@@ -12,7 +12,7 @@ class Model:
         self.highest_word_value = self.get_the_highest_word_value()
         self.iteration = 0
         self.suggested_question = {}
-        self.minimum_threshold = 0.7
+        self.minimum_threshold = 0.6
 
     def __calculate_word_weight(self):
         total_words = 0
@@ -63,11 +63,18 @@ class Model:
             else:
                 self.objects_prob[key] = temp / self.iteration
 
-        # TODO rework the next question algorithm
         max_o = max(self.objects_prob, key=self.objects_prob.get)
+        max_prob_word = 0
+        next_question = None
+
         for i in self.raw_model[max_o]:
             if i not in self.suggested_question:
-                return i, None
+                if self.words_prob[i] > max_prob_word:
+                    max_prob_word = self.words_prob[i]
+                    next_question = i
+
+        if next_question is not None:
+            return next_question, None
 
         if self.objects_prob[max_o] < self.minimum_threshold:
             return None, None

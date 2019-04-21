@@ -12,5 +12,6 @@
   "11": "is he/she a singer?",
   "12": "is he/she canadian?",
   "13": "is he/she has tattoo?",
-  "14": "is he/she already married?"
+  "14": "is he/she already married?",
+  "15": "is it has horns?"
 }
